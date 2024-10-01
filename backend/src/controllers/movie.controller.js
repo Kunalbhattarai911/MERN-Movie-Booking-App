@@ -3,8 +3,7 @@ import Movie from "../models/Movie.model.js";
 //add movie by admin
 export const addMovies = async (req, res) => {
   try {
-    const { title, description, releaseDate, posterUrl, featured, bookings } =
-      req.body;
+    const { title, description, releaseDate, posterUrl, featured, totalSeats } =req.body;
     const adminId = req.id;
 
     const newMovie = await Movie.create({
@@ -14,7 +13,7 @@ export const addMovies = async (req, res) => {
       releaseDate,
       posterUrl,
       featured,
-      bookings,
+      totalSeats
     });
 
     return res.status(201).json({
@@ -113,8 +112,7 @@ export const updateMovie = async (req, res) => {
   try {
     const adminId = req.id;
     const { id } = req.params;
-    const { title, description, releaseDate, posterUrl, featured, bookings } =
-      req.body;
+    const { title, description, releaseDate, posterUrl, featured, bookings, totalSeats } = req.body;
 
     let findMovie = await Movie.findOne({ adminId, _id: id });
     if (!findMovie) {
@@ -130,6 +128,7 @@ export const updateMovie = async (req, res) => {
     if (posterUrl) findMovie.posterUrl = posterUrl;
     if (featured) findMovie.featured = featured;
     if (bookings) findMovie.bookings = bookings;
+    if (totalSeats) findMovie.totalSeats = totalSeats;
 
     await findMovie.save();
 

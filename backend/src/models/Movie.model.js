@@ -20,6 +20,10 @@ const movieSchema = new mongoose.Schema({
   featured: {
     type: Boolean,
   },
+  totalSeats: {
+    type: Number,
+    required: true, 
+  },
   bookings: [
     {
       type: String,

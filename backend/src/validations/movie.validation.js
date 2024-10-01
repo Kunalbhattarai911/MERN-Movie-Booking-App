@@ -8,6 +8,7 @@ export const movieRegister = (req, res, next) => {
     posterUrl: Joi.string().min(1).max(100).required(),
     featured: Joi.boolean(),
     bookings: Joi.array().items(Joi.string()),
+    totalSeats: Joi.number().required()
   });
 
   const { error } = schema.validate(req.body);
@@ -30,6 +31,7 @@ export const movieUpdate = (req,res,next) => {
     posterUrl: Joi.string().min(1).max(100),
     featured: Joi.boolean(),
     bookings: Joi.array().items(Joi.string()),
+    totalSeats: Joi.number()
   });
 
   const { error } = schema.validate(req.body);
