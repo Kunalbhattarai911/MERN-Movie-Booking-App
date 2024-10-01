@@ -16,6 +16,10 @@ const bookingSchema = new Schema({
     type: Number,
     required: true,
   },
+  hallNumber: {
+    type: String, 
+    required: true,
+  },
   userID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

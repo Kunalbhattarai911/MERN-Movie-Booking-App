@@ -4,6 +4,9 @@ import authRoutes from "./src/routes/auth.route.js";
 import userRoute from "./src/routes/user.route.js";
 import movieRoute from "./src/routes/movie.route.js";
 import bookingRoute from "./src/routes/booking.route.js";
+import homeRoute from "./src/routes/home.route.js"
+import reviewRoute from "./src/routes/review.route.js"
+import adminRoute from "./src/routes/admin.route.js"
 import dbConnection from "./src/databaseConnection/connectDB.js";
 dotenv.config();
 
@@ -26,7 +29,10 @@ app.get("/test", (req, res) => {
 });
 
 //Routes
+app.use("/api/home", homeRoute)
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoute);
+app.use("/api/admin", adminRoute)
 app.use("/api/admin/movie", movieRoute)
 app.use("/api/booking", bookingRoute)
+app.use("/api/user/review", reviewRoute)

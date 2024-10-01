@@ -11,12 +11,13 @@ const adminSchema = new Schema({
         type : String,
         required : true
     },
-    addMovies : [
-    {
-    type : String
-    }
+    addedMovies: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Movie"  
+        }
     ]
-})
+});
 
 const Admin = mongoose.model("Admin", adminSchema);
 

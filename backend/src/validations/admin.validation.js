@@ -35,3 +35,21 @@ export const adminLoginValidation = (req,res,next) => {
     
       next();
 }
+
+export const adminUpdateValidation = (req,res,next) => {
+  const schema = Joi.object({
+      email: Joi.string().email(),
+      password: Joi.string(),
+    });
+  
+    const { error } = schema.validate(req.body);
+    if (error) {
+      return res.status(400).json({
+        message: "Bad Request",
+        success: false,
+        error: error.message,
+      });
+    }
+  
+    next();
+}
