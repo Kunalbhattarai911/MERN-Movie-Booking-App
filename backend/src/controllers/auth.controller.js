@@ -101,6 +101,29 @@ export const loginUser = async (req, res) => {
   }
 };
 
+export const logoutUser = (req, res) => {
+  try {
+    res
+      .status(200)
+      .clearCookie("token", {
+        httpOnly: true,
+        sameSite: "strict",
+      })
+      .json({
+        message: "Logout Successful",
+        success: true,
+      });
+  } catch (error) {
+    console.log("Error Details:", error);
+    return res.status(500).json({
+      message: "An Error Occured During Logout",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+
 //admin
 
 export const registerAdmin = async (req, res) => {
@@ -194,6 +217,28 @@ export const adminLogin = async (req, res) => {
     console.log("Error Details:", error);
     return res.status(500).json({
       message: "An Error Occured While Login The Admin",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+export const logoutAdmin = (req, res) => {
+  try {
+    res
+      .status(200)
+      .clearCookie("token", {
+        httpOnly: true,
+        sameSite: "strict",
+      })
+      .json({
+        message: "Logout Successful",
+        success: true,
+      });
+  } catch (error) {
+    console.log("Error Details:", error);
+    return res.status(500).json({
+      message: "An Error Occured During Logout",
       success: false,
       error: error.message,
     });
